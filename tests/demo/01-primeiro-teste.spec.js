@@ -5,9 +5,30 @@ import { calcularDesconto } from '../../src/utils/calculos.js'
 
 describe('calcularDesconto', () => {
   // Arrange (preparar) → Act (agir) → Assert (verificar)
-  it.todo('aplica 10% de desconto sobre 100')
-  it.todo('não altera o preço quando o desconto é 0%')
-  it.todo('zera o preço quando o desconto é 100%')
-  it.todo('lança erro para percentual maior que 100')
-  it.todo('lança erro para percentual negativo')
+  it('aplica 10% de desconto sobre 100', () => {
+    // Arrange
+    const preco = 100
+    const percentual = 10
+    // Act
+    const resultado = calcularDesconto(preco, percentual)
+    // Assert
+    expect(resultado).toBe(90)
+  })
+
+  it('não altera o preço quando o desconto é 0%', () => {
+    expect(calcularDesconto(50, 0)).toBe(50)
+  })
+
+  it('zera o preço quando o desconto é 100%', () => {
+    expect(calcularDesconto(80, 100)).toBe(0)
+  })
+
+  it('lança erro para percentual maior que 100', () => {
+    // Para testar erro, passamos uma FUNÇÃO para o expect
+    expect(() => calcularDesconto(100, 150)).toThrow('Percentual inválido')
+  })
+
+  it('lança erro para percentual negativo', () => {
+    expect(() => calcularDesconto(100, -5)).toThrow()
+  })
 })

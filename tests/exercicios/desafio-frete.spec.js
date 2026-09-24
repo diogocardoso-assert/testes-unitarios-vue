@@ -6,8 +6,21 @@ import { describe, it, expect } from 'vitest'
 import { calcularFrete } from '../../src/utils/carrinho.js'
 
 describe('calcularFrete', () => {
-  it.todo('cobra R$ 15 para subtotal de R$ 100')
-  it.todo('frete grátis para subtotal de R$ 250')
-  it.todo('carrinho vazio não paga frete')
-  it.todo('??? pense nos valores de FRONTEIRA da regra ???')
+  it('cobra R$ 15 para subtotal de R$ 100', () => {
+    expect(calcularFrete(100)).toBe(15)
+  })
+  it('frete grátis para subtotal de R$ 250', () => {
+    expect(calcularFrete(250)).toBe(0)
+  })
+  it('carrinho vazio não paga frete', () => {
+    expect(calcularFrete(0)).toBe(0)
+  })
+
+  // Valores de FRONTEIRA: logo abaixo e exatamente no ponto em que a regra muda
+  it('cobra frete em R$ 199,99', () => {
+    expect(calcularFrete(199.99)).toBe(15)
+  })
+  it('frete grátis EXATAMENTE em R$ 200 (este teste revelou o bug)', () => {
+    expect(calcularFrete(200)).toBe(0)
+  })
 })

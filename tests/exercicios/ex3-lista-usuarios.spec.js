@@ -16,7 +16,25 @@ vi.mock('../../src/services/api.js', () => ({
 describe('ListaUsuarios — estados de borda', () => {
   beforeEach(() => vi.clearAllMocks())
 
-  it.todo('mostra "Nenhum usuário cadastrado." quando a API retorna []')
-  it.todo('mostra mensagem de erro quando a API falha')
-  it.todo('some com o "Carregando..." depois que a API responde')
+  it('mostra "Nenhum usuário cadastrado." quando a API retorna []', async () => {
+    buscarUsuarios.mockResolvedValue([])
+    const wrapper = mount(ListaUsuarios)
+    await flushPromises()
+    expect(wrapper.find('[data-test="vazio"]').text()).toBe('Nenhum usuário cadastrado.')
+  })
+
+  it('mostra mensagem de erro quando a API falha', async () => {
+    buscarUsuarios.mockRejectedValue(new Error('500'))
+    const wrapper = mount(ListaUsuarios)
+    await flushPromises()
+    expect(wrapper.find('[data-test="erro"]').exists()).toBe(true)
+  })
+
+  it('some com o "Carregando..." depois que a API responde', async () => {
+    buscarUsuarios.mockResolvedValue([{ id: 1, nome: 'Ana' }])
+    const wrapper = mount(ListaUsuarios)
+    expect(wrapper.find('[data-test="carregando"]').exists()).toBe(true)
+    await flushPromises()
+    expect(wrapper.find('[data-test="carregando"]').exists()).toBe(false)
+  })
 })

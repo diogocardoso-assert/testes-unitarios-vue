@@ -5,20 +5,39 @@ import { describe, it, expect } from 'vitest'
 import { validarEmail, gerarIniciais } from '../../src/utils/calculos.js'
 
 describe('validarEmail', () => {
-  it.todo('retorna true para "aluno@ifpb.edu.br"')
-  it.todo('retorna false para e-mail sem @')
-  it.todo('retorna false para e-mail com espaço no meio')
-  it.todo('retorna false quando recebe algo que não é string (ex.: null)')
+  it('retorna true para "aluno@ifpb.edu.br"', () => {
+    expect(validarEmail('aluno@ifpb.edu.br')).toBe(true)
+  })
+  it('retorna false para e-mail sem @', () => {
+    expect(validarEmail('aluno.ifpb.edu.br')).toBe(false)
+  })
+  it('retorna false para e-mail com espaço no meio', () => {
+    expect(validarEmail('alu no@ifpb.edu.br')).toBe(false)
+  })
+  it('retorna false quando recebe algo que não é string (ex.: null)', () => {
+    expect(validarEmail(null)).toBe(false)
+  })
 })
 
 describe('gerarIniciais', () => {
-  it.todo('"Maria da Silva" vira "MS"')
-  it.todo('funciona com nome minúsculo: "joão" vira "J"')
-  it.todo('ignora espaços extras: "  Ana   Paula  " vira "AP"')
+  it('"Maria da Silva" vira "MS"', () => {
+    expect(gerarIniciais('Maria da Silva')).toBe('MS')
+  })
+  it('funciona com nome minúsculo: "joão" vira "J"', () => {
+    expect(gerarIniciais('joão')).toBe('J')
+  })
+  it('ignora espaços extras: "  Ana   Paula  " vira "AP"', () => {
+    expect(gerarIniciais('  Ana   Paula  ')).toBe('AP')
+  })
 
   // BÔNUS: reescreva os casos acima com it.each
-  // it.each([
-  //   ['Maria da Silva', 'MS'],
-  //   ...
-  // ])('%s -> %s', (nome, esperado) => { ... })
+  it.each([
+    ['Maria da Silva', 'MS'],
+    ['joão', 'J'],
+    ['  Ana   Paula  ', 'AP'],
+    ['José dos Santos e Souza', 'JSS'],
+    ['', '']
+  ])('"%s" -> "%s"', (nome, esperado) => {
+    expect(gerarIniciais(nome)).toBe(esperado)
+  })
 })
