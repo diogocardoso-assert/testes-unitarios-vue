@@ -9,9 +9,25 @@ function aoLogar(dados) {
 </script>
 
 <template>
-  <main style="font-family: sans-serif; max-width: 480px; margin: 2rem auto; display: grid; gap: 2rem">
-    <Contador :inicial="0" :maximo="5" />
-    <FormLogin @login="aoLogar" />
-    <ListaUsuarios />
+  <main class="pagina">
+    <header>
+      <h1>Aula de Testes Unitários</h1>
+      <p>Vue 3 + Vitest</p>
+    </header>
+
+    <div class="card contador">
+      <h2>Contador</h2>
+      <Contador :inicial="0" :maximo="5" />
+    </div>
+
+    <div class="card login">
+      <h2>Login</h2>
+      <FormLogin @login="aoLogar" />
+    </div>
+
+    <div class="card usuarios">
+      <h2>Usuários</h2>
+      <ListaUsuarios />
+    </div>
   </main>
 </template>
