@@ -4,13 +4,13 @@ Material da aula prática de **DEPS · TSI · IFPB**.
 
 ## 1. Pré-requisitos
 
-- **Node.js 24 LTS** (ou 22.22 em diante) → confira com `node -v`
+- **Node.js 24.15 ou mais recente** (ou 22.22.2+) → confira com `node -v`
 - Um editor (VS Code recomendado — extensão oficial **Vitest** ajuda muito)
 
 ## 2. Instalação (faça antes da aula, se puder)
 
 ```bash
-git clone [URL-DO-REPOSITORIO]
+git clone https://github.com/diogocardoso-assert/testes-unitarios-vue
 cd testes-unitarios-vue
 npm install
 npm test
@@ -91,7 +91,7 @@ As soluções ficam na branch `gabarito`, liberada depois da aula. Nela, os pró
 **Jeito mais fácil: pelo navegador.** Abra a comparação entre as branches:
 
 ```
-[URL-DO-REPOSITORIO]/compare/main...gabarito
+https://github.com/diogocardoso-assert/testes-unitarios-vue/compare/main...gabarito
 ```
 
 Cada arquivo aparece com as linhas que precisavam ser escritas.
@@ -118,7 +118,7 @@ Tente os exercícios antes de olhar.
 
 ## 7. Problemas comuns
 
-- **Aviso de `engine` ou erro estranho no `npm install`** → Node antigo. Instale o Node 24 LTS e rode `npm install` de novo.
+- **Aviso de `engine` ou erro estranho no `npm install`** → Node antigo. Instale o Node 24.15+ e rode `npm install` de novo.
 - **`npm` não reconhecido** → Node não instalado ou terminal aberto antes da instalação. Feche e abra de novo.
 - **Teste passa mas o DOM não mudou** → faltou `await` no `trigger`/`setValue`.
 - **Lista vazia mesmo com mock** → faltou `await flushPromises()`.
